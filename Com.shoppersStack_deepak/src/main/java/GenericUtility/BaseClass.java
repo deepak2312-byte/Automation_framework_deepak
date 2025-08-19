@@ -71,8 +71,8 @@ public class BaseClass {
 	@BeforeClass
 	public void beforeClass() throws IOException {
 		System.out.println("@beforeClass -------------- Launching browser");
-		//String browserName = fileUtility.readDataFromPropertyfile("browserName");
-		String browserName=System.getProperty("browser");
+		String browserName = fileUtility.readDataFromPropertyfile("browserName");
+		//String browserName=System.getProperty("browser");
 		if (browserName.equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver();
 		} else if (browserName.equalsIgnoreCase("edge")) {
@@ -82,12 +82,11 @@ public class BaseClass {
 			System.out.println("Provide valid browser name");
 			throw new RuntimeException();
 		}
-		sDriver = driver;
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-		//driver.get(fileUtility.readDataFromPropertyfile("url"));
-		String url=System.getProperty("baseurl");
-		driver.get(url);
+		driver.get(fileUtility.readDataFromPropertyfile("url"));
+		//String url=System.getProperty("baseurl");
+		//driver.get(url);
 
 	}
 
